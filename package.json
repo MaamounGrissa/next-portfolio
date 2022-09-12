@@ -1,0 +1,33 @@
+{
+  "name": "maamoungrissa",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.6.2",
+    "@sanity/client": "^3.4.1",
+    "aos": "^2.3.4",
+    "axios": "^0.26.1",
+    "bcryptjs": "^2.4.3",
+    "js-cookie": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "next": "12.1.5",
+    "next-i18next": "^11.0.0",
+    "notistack": "^2.0.4",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "react-hook-form": "^7.30.0"
+  },
+  "devDependencies": {
+    "eslint": "8.13.0",
+    "eslint-config-next": "12.1.5"
+  }
+}

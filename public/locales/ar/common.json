@@ -1,0 +1,30 @@
+{
+    "intro": "المقدمة",
+    "career": "المسار المهني",
+    "skills": "المهارات",
+    "portfolio": "المشاريع",
+    "contact": "التواصل",
+    "name": "مأمون",
+    "surname": "قريسة",
+    "job": "مبرمج ومطور ويب",
+    "about": "مرحبًا ، أنا مأمون قريسة، أنا من مدينة صغيرة تسمى الوردانين في تونس ، عمري 34 عامًا ، و لمدة 4 سنوات أعمل كمطور ويب في العديد من الشركات والمواقع. لقد قمت بتطوير العديد من مواقع وتطبيقات الويب وأتطلع إلى تحسين تطوير الأعمال ورقمنتها. مهاراتي هي HTML و CSS و Javascript و ReactJs و NextJs و NodeJs و NestJs ... وغيرها.",
+    "education": "التعليم",
+    "experience": "الخبرات",
+
+    "creo": "Creo",
+    "knowledges": "Knowledges",
+    "home": "Home",
+    "Services": "Our Services",
+    "News": "News",
+    "intro_title": "Knowledge and innovation",
+    "intro_description": "We are proud to ...",
+    "about_title": "Who we are!",
+    "about_description": "Creo is a cabinet...",
+    "services_title": "Our Services",
+    "services_button": "Discover",
+
+    "footer_phone": "+216 25 788 950 / +216 50 870 256",
+    "footer_mail": "contact@creo.tn",
+    "footer_address": "Street of costantine, Sousse 4000, Tunisia",
+    "footer_copyright": "Powered by"
+}
