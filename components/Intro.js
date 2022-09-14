@@ -9,7 +9,7 @@ export default function Intro(props) {
     const { t } = useTranslation('common');
     return (
         <section id="intro" className={`intro_container ${locale}`}>
-            <div className="intro_content">
+            <div className="intro_content" data-aos="fade-right" data-aos-duration="1200">
                 <span>{t('job')}</span>
                 <h1>
                     <span>{t('name')}</span> 
@@ -19,7 +19,7 @@ export default function Intro(props) {
                 <p>{t('about')}</p>
             </div>
             <div className='intro_image'>
-                <Image className='maamoun' src="/images/maamoun.png" alt="Maamoun" height={400} width={288} />
+                <div  data-aos="fade-left" data-aos-delay="500" data-aos-duration="1200"><Image className='maamoun' src="/images/maamoun.png" alt="Maamoun" height={400} width={288} /></div>
             </div>
         </section>
     )

@@ -10,7 +10,7 @@ const classes = {
     footer: {
       marginTop: 3,
       textAlign: "center",
-      backgroundColor: "#312782",
+      backgroundColor: "#011233",
       color: "white",
       backgroundImage: "url(/images/bg-footer.png)",
       backgroundSize: "contain",
@@ -49,7 +49,7 @@ const classes = {
       justifyContent: "space-between",
     },
     navbarContainer: {
-      width: "60%",
+      width: "70%",
       padding: "6px 20px",
       backgroundColor: "rgba(245, 245, 245, 0.4)",
       borderRadius: "30px",
@@ -71,6 +71,15 @@ const classes = {
       '&:hover': {
         color: "#f700c4",
       },
+    },
+    menuTitleMobile: {
+      color: "#333",
+      margin: "25px 60px 25px 20px"
+    },
+    closeIcon: {
+      position: "absolute",
+      right: "15px",
+      top: "15px",
     },
     navbarButton: {
       color: "#ffffff",

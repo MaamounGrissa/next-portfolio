@@ -11,6 +11,10 @@
     "education": "التعليم",
     "experience": "الخبرات",
     "references": "المشاريع",
+    "footer_phone": "+216 28 015 265 / +216 50 870 256",
+    "footer_mail": "grissa.maamoun@creo.tn",
+    "footer_address": "شارع قسنطينة، 4000 سوسة، تونس",
+    "footer_copyright": "مدعم من قبل مأمون قريسة",
 
     "creo": "Creo",
     "knowledges": "Knowledges",
@@ -22,10 +26,5 @@
     "about_title": "Who we are!",
     "about_description": "Creo is a cabinet...",
     "services_title": "Our Services",
-    "services_button": "Discover",
-
-    "footer_phone": "+216 25 788 950 / +216 50 870 256",
-    "footer_mail": "contact@creo.tn",
-    "footer_address": "Street of costantine, Sousse 4000, Tunisia",
-    "footer_copyright": "Powered by"
+    "services_button": "Discover"
 }

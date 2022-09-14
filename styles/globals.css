@@ -118,6 +118,7 @@ a {
 .languages {
   cursor: pointer;
   position: relative;
+  padding-top: 2px;
 }
 
 .list-languages {
@@ -125,7 +126,7 @@ a {
   top: 170%;
   right: 0;
   padding: 0 5px;
-  background-color: rgba(245, 245, 245, 0.4);
+  background-color: rgba(245, 245, 245, 0.8);
   border-radius: 15px;
   opacity: 0;
   transform: scaleY(0);
@@ -357,7 +358,7 @@ a {
 .skills_container>h2 {
   font-size: 2rem;
   font-weight: bold;
-  color: #000;
+  color: #AAA;
   margin: 0 auto 40px;
 }
 
@@ -394,14 +395,15 @@ a {
 
 .project {
   position: relative;
-  width: 30%;
+  width: 31.5%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;
   min-height: 300px;
   background-color: rgba(1, 18, 51, 0.5);
-  border-radius: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow)
 }
 
 .project_skill0, .project_skill1 {
@@ -437,87 +439,37 @@ a {
   right: 10px;
 }
 
-.aboutBlock_container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 450px;
-  padding: 40px 0;
-}
-
-.image_container {
-  width: 45%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.about_content {
-  width: 45%;
-  height: 100%;
-}
-
-.about_content>h2 {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #312782;
-  margin: 0 auto 20px;
-}
-
-.about_content>p {
-  font-size: 1.1rem;
-  color: #333;
-  margin: 0;
-}
-
-.astronaut {
-  animation: astronaut 500s infinite;
-}
-
-@keyframes astronaut {
-  0% {
-    transform: rotate(0deg);
-    transform: translate(0, 0, 0);
-  }
-  25% {
-    transform: rotate(40deg);
-    transform: translate(10, 15, -50);
-  }
-  50% {
-    transform: rotate(-40deg);
-    transform: translate(0, 0, 0);
-  }
-  75% {
-    transform: rotate(40deg);
-    transform: translate3d(-60, -15, 30);
-  }
-  100% {
-    transform: rotate(0deg);
-    transform: translate3d(40, 40, -100);
-  }
-}
-
-.servicesBlock_container {
-  padding: 40px;
-}
-
-.services_title {
-  text-align: center;
-  font-size: 3rem;
-  color: var(--main-color);
-  margin-bottom: 40px;
-}
-
-.services_row {
-  display: flex;
-  align-items: center;
-}
-
-.services_col {
-  width: 50%;
-  padding: 0 20px;
-}
 @media (max-width: 500px) {
   /* Mobile */
+  .intro_container {
+    height: auto;
+    flex-direction: column;
+    padding: 100px 20px 0;
+  }
+  .intro_content {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .intro_image {
+    width: 70%;
+    background-color: transparent;
+  }
+  .intro_content>h1 {
+    font-size: 3.5rem;
+  }
+  .career_container {
+    padding: 40px 20px;
+    flex-direction: column;
+  }
+  .education_container {
+    width: 100%;
+  }
+  .experience_container {
+    width: 100%;
+  }
+  .project {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }

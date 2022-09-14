@@ -48,7 +48,7 @@ export default function Career(props) {
                 : error ? <p>{error}</p>
                 : (
                     <>
-                        <div className='education_container'>
+                        <div className='education_container' data-aos="fade-right" data-aos-duration="1000">
                             <h2>{t("education")}</h2>
                             {
                                 educations?.map(education => (
@@ -64,7 +64,7 @@ export default function Career(props) {
                                 ))
                             }
                         </div>
-                        <div className='experience_container'>
+                        <div className='experience_container' data-aos="fade-left" data-aos-duration="1000">
                             <h2>{t("experience")}</h2>
                             {
                                 experiences?.map(experience => (

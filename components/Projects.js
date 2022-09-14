@@ -31,7 +31,7 @@ export default function Projects(props) {
             <div className="projects">
                 {
                     projects?.map(project => (
-                        <div key={project._id} className="project">
+                        <div key={project._id} className="project" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="500">
                             <h2>{project.title}</h2>
                             {project.skills?.map((skill, skillIndex) => (
                                 <div key={skill} className={`project_skill${skillIndex}`} >

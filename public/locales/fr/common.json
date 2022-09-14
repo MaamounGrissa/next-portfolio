@@ -11,6 +11,10 @@
     "education": "Éducation",
     "experience": "Expérience",
     "references": "Références",
+    "footer_phone": "+216 28 015 265 / +216 50 870 256",
+    "footer_mail": "grissa.maamoun@creo.tn",
+    "footer_address": "ٌRue costantine, 4000 Sousse, Tunisie",
+    "footer_copyright": "Propulsé par Maamoun Grissa",
 
     "creo": "Creo",
     "knowledges": "Connaissances",
@@ -22,10 +26,5 @@
     "about_title": "Qui sommes nous ?",
     "about_description": "Creo est un cabiner...",
     "services_title": "Nos services",
-    "services_button": "Découvrir",
-
-    "footer_phone": "+216 25 788 950 / +216 50 870 256",
-    "footer_mail": "contact@creo.tn",
-    "footer_address": "Rue de costantine, Sousse 4000, Tunisia",
-    "footer_copyright": "Propulsé par"
+    "services_button": "Découvrir"
 }

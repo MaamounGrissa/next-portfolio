@@ -7,10 +7,14 @@
     "name": "Maamoun",
     "surname": "Grissa",
     "job": "Web Developer",
-    "about": "Hi, I'm Maamoun Grissa, I'm from a small village called Ouardanine in Tunisia, I'm 34 years old, for 4 years I work as a Fullstack web developer in many companies and sites. I have developed many websites and web applications and am looking to improve in business development and digitization. my skills are HTML, CSS, Javascript, ReactJs, NextJs, NodeJs, NestJs... and others.",
+    "about": "Hi, I'm Maamoun Grissa, I'm 34 years old, for 4 years I work as a Fullstack web developer in many companies and sites. I have developed many websites and web applications and am looking to improve in business development and digitization. my skills are HTML, CSS, Javascript, ReactJs, NextJs, NodeJs, NestJs... and others.",
     "education": "Education",
     "experience": "Experience",
     "references": "References",
+    "footer_phone": "+216 28 015 265 / +216 50 870 256",
+    "footer_mail": "grissa.maamoun@creo.tn",
+    "footer_address": "Street costantine, 4000 Sousse, Tunisia",
+    "footer_copyright": "Powered by Maamoun Grissa",
 
     "creo": "Creo",
     "knowledges": "Knowledges",
@@ -22,10 +26,5 @@
     "about_title": "Who we are!",
     "about_description": "Creo is a cabinet...",
     "services_title": "Our Services",
-    "services_button": "Discover",
-
-    "footer_phone": "+216 25 788 950 / +216 50 870 256",
-    "footer_mail": "contact@creo.tn",
-    "footer_address": "Street of costantine, Sousse 4000, Tunisia",
-    "footer_copyright": "Powered by"
+    "services_button": "Discover"
 }

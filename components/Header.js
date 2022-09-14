@@ -26,6 +26,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Link from 'next/link';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Header(props) {
     const { darkMode, setDarkMode } = props;
@@ -69,33 +70,40 @@ export default function Header(props) {
                     
                 </Box>
                 <Box display="flex" alignItems="center" justifyContent="space-between" sx={classes.navbarContainer}>
-                    <Box sx={classes.navbarMenu}>
-                        <NextLink href="#intro" passHref>
-                            <a >
-                                <Typography sx={classes.menuTitle}>{t('intro')}</Typography>
-                            </a>
-                        </NextLink>
-                        <NextLink href="#career" passHref>
-                            <a>
-                                <Typography sx={classes.menuTitle}>{t('career')}</Typography>
-                            </a>
-                        </NextLink>
-                        <NextLink href="#skills" passHref>
-                            <a>
-                                <Typography sx={classes.menuTitle}>{t('skills')}</Typography>
-                            </a>
-                        </NextLink>
-                        <NextLink href="/" passHref>
-                            <a>
-                                <Typography sx={classes.menuTitle}>{t('portfolio')}</Typography>
-                            </a>
-                        </NextLink>
-                        <NextLink href="/" passHref>
-                            <a>
-                                <Typography sx={classes.menuTitle}>{t('contact')}</Typography>
-                            </a>
-                        </NextLink>
-                    </Box>
+                    {isDesktop ? (
+                        <Box sx={classes.navbarMenu}>
+                            <NextLink href="#intro" passHref>
+                                <a >
+                                    <Typography sx={classes.menuTitle}>{t('intro')}</Typography>
+                                </a>
+                            </NextLink>
+                            <NextLink href="#career" passHref>
+                                <a>
+                                    <Typography sx={classes.menuTitle}>{t('career')}</Typography>
+                                </a>
+                            </NextLink>
+                            <NextLink href="#skills" passHref>
+                                <a>
+                                    <Typography sx={classes.menuTitle}>{t('skills')}</Typography>
+                                </a>
+                            </NextLink>
+                            <NextLink href="#projects" passHref>
+                                <a>
+                                    <Typography sx={classes.menuTitle}>{t('portfolio')}</Typography>
+                                </a>
+                            </NextLink>
+                            <NextLink href="#contacts" passHref>
+                                <a>
+                                    <Typography sx={classes.menuTitle}>{t('contact')}</Typography>
+                                </a>
+                            </NextLink>
+                        </Box>
+                        ) : (
+                            <IconButton onClick={sidebarOpenHandler}>
+                                <MenuIcon sx={{ color: "#FFF", fontSize: "30px" }} />
+                            </IconButton>
+                        )
+                    }
                     <Box>
                         <div className='languages flex center' onClick={() => setShowLangsList(!showLangsList)}>
                             <div className="selected-lang"> <Image src={`/images/langs/${locale === 'fr' ? 'fr' : locale === 'ar' ? 'ar' : locale === 'ru' ? 'ru' : 'en' }.png`} alt="Lang" width={25} height={25} /> </div>
@@ -148,9 +156,36 @@ export default function Header(props) {
                             alignItems="center"
                             justifyContent="space-between"
                         >
-                            <Typography>Shopping by category</Typography>
-                            <IconButton aria-label="close" onClick={sidebarCloseHandler}>
-                            <CancelIcon />
+                            <Typography>&nbsp;</Typography>
+                            <Box>
+                                <NextLink href="#intro" passHref>
+                                    <a >
+                                        <Typography sx={classes.menuTitleMobile}>{t('intro')}</Typography>
+                                    </a>
+                                </NextLink>
+                                <NextLink href="#career" passHref>
+                                    <a>
+                                        <Typography sx={classes.menuTitleMobile}>{t('career')}</Typography>
+                                    </a>
+                                </NextLink>
+                                <NextLink href="#skills" passHref>
+                                    <a>
+                                        <Typography sx={classes.menuTitleMobile}>{t('skills')}</Typography>
+                                    </a>
+                                </NextLink>
+                                <NextLink href="#projects" passHref>
+                                    <a>
+                                        <Typography sx={classes.menuTitleMobile}>{t('portfolio')}</Typography>
+                                    </a>
+                                </NextLink>
+                                <NextLink href="#contacts" passHref>
+                                    <a>
+                                        <Typography sx={classes.menuTitleMobile}>{t('contact')}</Typography>
+                                    </a>
+                                </NextLink>
+                            </Box>
+                            <IconButton sx={classes.closeIcon} aria-label="close" onClick={sidebarCloseHandler}>
+                                <CancelIcon />
                             </IconButton>
                         </Box>
                     </ListItem>
