@@ -20,7 +20,7 @@ export default function Footer() {
             <Box component="footer" sx={classes.footer}>
                 <Grid container rowSpacing={1}  columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                     >
-                    <Grid item xs={6}>
+                    <Grid item xs={12} sm={6} >
                         <Box display='flex' alignItems='center' marginBottom={1} >
                             <PhoneIcon sx={{ color: '#FFF', marginRight: '15px' }} />
                             <Typography sx={{ color: '#FFF' }} >{t('footer_phone')}</Typography>
@@ -34,7 +34,7 @@ export default function Footer() {
                             <Typography sx={{ color: '#FFF' }} >{t('footer_address')}</Typography>
                         </Box>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} sm={6} >
                         <Box>
                             <Box display='flex' justifyContent='flex-end' alignItems='center'>
                                 <NextLink href="https://www.facebook.com/maamoung/" passHref>
