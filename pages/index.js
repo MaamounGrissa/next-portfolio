@@ -9,6 +9,7 @@ import Intro from '../components/Intro';
 import AboutBlock from '../components/AboutBlock';
 import Career from '../components/Career';
 import Skills from '../components/Skills';
+import Projects from '../components/Projects';
 
 export async function getStaticProps({locale}) {
   return {
@@ -30,6 +31,7 @@ export default function Home(props) {
       <Intro classes={styles} />
       <Career classes={styles} />
       <Skills classes={styles} />
+      <Projects classes={styles} />
     </Layout>
   )
 }

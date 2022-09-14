@@ -20,7 +20,7 @@ export default function Career(props) {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const res = await client.fetch(`*[_type == "career"] | order(order asc)`)
+            const res = await client.fetch(`*[_type == "career"] | order(order desc)`)
             setState({career: res, loading: false})
           } catch (error) {
             setState({error: error.message, loading: false})

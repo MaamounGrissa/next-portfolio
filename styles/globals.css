@@ -291,7 +291,7 @@ a {
   font-size: 2rem;
   font-weight: bold;
   color: #000;
-  margin: 0 auto 20px;
+  margin: 0 auto 40px;
 }
 
 .experience_container {
@@ -302,14 +302,14 @@ a {
   font-size: 2rem;
   font-weight: bold;
   color: #000;
-  margin: 0 auto 20px;
+  margin: 0 auto 40px;
 }
 
 .education_item, .experience_item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 0;
+  margin: 25px 0;
 }
 
 .education_image, .experience_image {
@@ -348,17 +348,17 @@ a {
 
 .skills_container {
   padding: 40px 5%;
-  background-color: #ffffff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0' gradientTransform='rotate(122,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1' gradientTransform='rotate(87,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='7.919999999999999'%3E%3Cpath transform='translate(-119 13.2) rotate(4.5 1409 581) scale(0.9786500000000001)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='2.64' transform='translate(-120.5 83) rotate(12.399999999999999 800 450) scale(1.016652)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(34.7 -136.5) rotate(111.5 401 736) scale(1.016652)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='2.4'%3E%3Cpath transform='translate(498 -8.2) rotate(2.05 150 345) scale(0.9655499999999999)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='5.28' transform='translate(-194.5 -220) rotate(118.80000000000001 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='translate(-358 106) rotate(19.799999999999997 1400 132) scale(0.875)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-color: #011233;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg fill-opacity='0.42'%3E%3Ccircle fill='%23011233' cx='50' cy='0' r='50'/%3E%3Cg fill='%23021336' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23021438' cx='50' cy='100' r='50'/%3E%3Cg fill='%2303153b' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%2304173d' cx='50' cy='200' r='50'/%3E%3Cg fill='%23051840' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%23061942' cx='50' cy='300' r='50'/%3E%3Cg fill='%23071a44' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23081b46' cx='50' cy='400' r='50'/%3E%3Cg fill='%23091d48' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%230b1e4a' cx='50' cy='500' r='50'/%3E%3Cg fill='%230c1f4c' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%230d204e' cx='50' cy='600' r='50'/%3E%3Cg fill='%230f2250' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23102352' cx='50' cy='700' r='50'/%3E%3Cg fill='%23122554' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23142655' cx='50' cy='800' r='50'/%3E%3Cg fill='%23152757' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23172958' cx='50' cy='900' r='50'/%3E%3Cg fill='%23192a5a' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%231B2C5B' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
   background-attachment: fixed;
-  background-size: cover;
+  background-size: contain;
 }
 
 .skills_container>h2 {
   font-size: 2rem;
   font-weight: bold;
   color: #000;
-  margin: 0 auto 20px;
+  margin: 0 auto 40px;
 }
 
 .skills {
@@ -367,11 +367,74 @@ a {
 }
 
 .skill {
-  width: 18%;
+  width: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  margin-bottom: 30px;
+}
+
+
+.projects_container {
+  padding: 40px 5%;
+}
+
+.projects_container>h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000;
+  margin: 0 auto 40px;
+}
+
+.projects {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.project {
+  position: relative;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  min-height: 300px;
+  background-color: rgba(1, 18, 51, 0.5);
+  border-radius: 20px;
+}
+
+.project_skill0, .project_skill1 {
+  position: absolute !important;
+  top: 5px !important;
+}
+
+.project_skill0 {
+  right: 10px !important;
+}
+
+.project_skill1 {
+  right: 60px;
+}
+
+.project_title {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+}
+
+.project_company {
+  height: 40px;
+  width: 80px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.project_links {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
 }
 
 .aboutBlock_container {
