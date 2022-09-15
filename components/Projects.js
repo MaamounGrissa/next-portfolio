@@ -32,13 +32,13 @@ export default function Projects(props) {
                 {
                     projects?.map(project => (
                         <div key={project._id} className="project" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="500">
-                            <h2>{project.title}</h2>
+                            <h2 className='project_title'>{project.name}</h2>
                             {project.skills?.map((skill, skillIndex) => (
                                 <div key={skill} className={`project_skill${skillIndex}`} >
                                     <Image src={`/images/skills/${skill}.png`} alt="Skill" width='45' height='45' />
                                 </div>
                             ))}
-                            <div style={{ width: "95%", height: "100%", position: "relative"}}>
+                            <div className='project_image_container'>
                                 <Image src={`/images/portfolio/${project.image_name}.png`} alt={project.name} layout="fill" objectFit='contain' />
                             </div>
                             <div className="project_company">
@@ -46,10 +46,10 @@ export default function Projects(props) {
                             </div>
                             <div className="project_links">
                                 <a href={project.github_link} target="_blank" rel="noreferrer">
-                                    <Image src="/images/github.png" alt="Github" width='45' height='45' />
+                                    <Image src="/images/github.png" alt="Github" width='40' height='40' />
                                 </a>
                                 <a href={project.website_link} target="_blank" rel="noreferrer">
-                                    <Image src="/images/link.png" alt="Website" width='45' height='45' />
+                                    <Image src="/images/link.png" alt="Website" width='40' height='40' />
                                 </a>
                             </div>
                         </div>

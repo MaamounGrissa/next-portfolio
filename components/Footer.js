@@ -52,7 +52,7 @@ export default function Footer() {
                                         <Image src="/images/linkedin.png" alt="linkedin" width={30} height={30} />
                                     </Link>
                                 </NextLink>
-                                <NextLink href="https://www.twitter.com/CreoSousse" passHref>
+                                {/* <NextLink href="https://www.twitter.com/CreoSousse" passHref>
                                     <Link style={{ margin: '6px' }} >
                                         <Image src="/images/twitter.png" alt="twitter" width={30} height={30} />
                                     </Link>
@@ -61,7 +61,7 @@ export default function Footer() {
                                     <Link style={{ margin: '6px' }} >
                                         <Image src="/images/youtube.png" alt="youtube" width={30} height={30} />
                                     </Link>
-                                </NextLink>
+                                </NextLink> */}
                             </Box>
                             <Box display='flex' justifyContent='flex-end' alignItems='center' marginTop={2}>
                                 <Typography sx={classes.powered}>{t('footer_copyright')}</Typography>
