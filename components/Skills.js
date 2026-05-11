@@ -17,9 +17,9 @@ export default function Skills(props) {
         const fetchData = async () => {
           try {
             const skills = await client.fetch(`*[_type == "skills"] | order(order asc)`)
-            setState({skills, loading: false})
+            setState({skills, loading: false, error: ''})
           } catch (error) {
-            setState({error: error.message, loading: false})
+            setState({skills: [], error: error.message, loading: false})
           }
         }
         fetchData();
@@ -28,11 +28,14 @@ export default function Skills(props) {
     return (
         <section id="skills" className="skills_container">
             <h2>{t("skills")}</h2>
+            {loading && <p className="section_message light">{t('loading')}</p>}
+            {error && <p className="section_message light">{t('content_unavailable')}</p>}
+            {!loading && !error && skills?.length === 0 && <p className="section_message light">{t('no_skills')}</p>}
             <div className="skills">
                 {
-                    skills?.map(skill => (
+                    !loading && !error && skills?.map(skill => (
                         <div key={skill._id} className="skill">
-                            <Image src={`/images/skills/${skill.image_name}.png`} alt={skill.name} width='100%' height='100%' />
+                            <Image src={`/images/skills/${skill.image_name}.png`} alt={skill.name} width={100} height={100} />
                         </div>
                     ))
                 }

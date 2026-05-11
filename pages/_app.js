@@ -7,6 +7,7 @@ import { appWithTranslation } from 'next-i18next';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
+import nextI18NextConfig from '../next-i18next.config.js';
 
 const clientSideEmotionCache = createCache({ key: 'css' })
 
@@ -33,4 +34,4 @@ function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }) 
   )
 }
 
-export default appWithTranslation(MyApp)
+export default appWithTranslation(MyApp, nextI18NextConfig)

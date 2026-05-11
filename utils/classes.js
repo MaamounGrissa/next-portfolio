@@ -22,7 +22,7 @@ const classes = {
       marginRight: '15px', 
       color: '#FFF', 
       fontSize: '1.3rem',
-      TextTransform: 'uppercase',
+      textTransform: 'uppercase',
     },
     appbar: {
       backgroundColor: "rgba(255, 255, 255, 0)",
@@ -35,7 +35,6 @@ const classes = {
       },
     },
     colored: {
-      backgroundColor: "rgba(255, 255, 255, 0)",
       boxShadow: "none",
       padding: "10px 20px",
       transition: "all 0.8s linear",
@@ -65,7 +64,7 @@ const classes = {
       fontSize: "0.9rem",
       textTransform: "uppercase",
       marginRight: "1rem",
-      letterSpacing: "2px",
+      letterSpacing: 0,
       cursor: "pointer",
       transition: "all 0.5s linear",
       '&:hover': {

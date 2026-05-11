@@ -10,9 +10,20 @@ import Form from '../components/Form';
 import Layout from '../components/Layout';
 import { getError } from '../utils/error';
 import { Store } from '../utils/store';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 function ProfileScreen() {
   const router = useRouter();
+  const { t } = useTranslation('common');
   const { state, dispatch } = useContext(Store);
   const { userInfo } = state;
   const {
@@ -28,13 +39,14 @@ function ProfileScreen() {
     }
     setValue('name', userInfo.name);
     setValue('email', userInfo.email);
+    setValue('phone', userInfo.phone || '');
   }, [router, setValue, userInfo]);
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-  const submitHandler = async ({ name, email, password, confirmPassword }) => {
+  const submitHandler = async ({ name, email, phone, password, confirmPassword }) => {
     closeSnackbar();
     if (password !== confirmPassword) {
-      enqueueSnackbar("Passwords don't match", { variant: 'error' });
+      enqueueSnackbar(t('passwords_mismatch'), { variant: 'error' });
       return;
     }
     try {
@@ -43,21 +55,22 @@ function ProfileScreen() {
         {
           name,
           email,
+          phone,
           password,
         },
         { headers: { authorization: `Bearer ${userInfo.token}` } }
       );
       dispatch({ type: 'USER_LOGIN', payload: data });
       jsCookie.set('userInfo', JSON.stringify(data));
-      enqueueSnackbar('Profile updated successfully', { variant: 'success' });
+      enqueueSnackbar(t('profile_updated'), { variant: 'success' });
     } catch (err) {
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
   return (
-    <Layout title="Profile">
+    <Layout title={t('profile')}>
       <Typography component="h1" variant="h1">
-        Profile
+        {t('profile')}
       </Typography>
       <Form onSubmit={handleSubmit(submitHandler)}>
         <List>
@@ -75,14 +88,14 @@ function ProfileScreen() {
                   variant="outlined"
                   fullWidth
                   id="name"
-                  label="Name"
+                  label={t('name_label')}
                   inputProps={{ type: 'text' }}
                   error={Boolean(errors.name)}
                   helperText={
                     errors.name
                       ? errors.name.type === 'minLength'
-                        ? 'Name length is more than 1'
-                        : 'Name is required'
+                        ? t('name_min')
+                        : t('field_required')
                       : ''
                   }
                   {...field}
@@ -104,14 +117,14 @@ function ProfileScreen() {
                   variant="outlined"
                   fullWidth
                   id="email"
-                  label="Email"
+                  label={t('email_label')}
                   inputProps={{ type: 'email' }}
                   error={Boolean(errors.email)}
                   helperText={
                     errors.email
                       ? errors.email.type === 'pattern'
-                        ? 'Email is not valid'
-                        : 'Email is required'
+                        ? t('email_invalid')
+                        : t('field_required')
                       : ''
                   }
                   {...field}
@@ -132,15 +145,11 @@ function ProfileScreen() {
                   variant="outlined"
                   fullWidth
                   id="phone"
-                  label="Phone"
+                  label={t('phone_label')}
                   inputProps={{ type: 'phone' }}
                   error={Boolean(errors.phone)}
                   helperText={
-                    errors.phone
-                      ? errors.phone.type === 'pattern'
-                        ? 'Phone is not valid'
-                        : 'Phone is required'
-                      : ''
+                    errors.phone ? t('field_required') : ''
                   }
                   {...field}
                 ></TextField>
@@ -163,11 +172,11 @@ function ProfileScreen() {
                   variant="outlined"
                   fullWidth
                   id="password"
-                  label="password"
+                  label={t('password_label')}
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.password)}
                   helperText={
-                    errors.password ? 'Password length is more than 5' : ''
+                    errors.password ? t('password_min') : ''
                   }
                   {...field}
                 ></TextField>
@@ -190,12 +199,12 @@ function ProfileScreen() {
                   variant="outlined"
                   fullWidth
                   id="confirmPassword"
-                  label="Confirm Password"
+                  label={t('confirm_password_label')}
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.confirmPassword)}
                   helperText={
                     errors.confirmPassword
-                      ? 'Confirm Password length is more than 5'
+                      ? t('password_min')
                       : ''
                   }
                   {...field}
@@ -205,7 +214,7 @@ function ProfileScreen() {
           </ListItem>
           <ListItem>
             <Button variant="contained" type="submit" fullWidth color="primary">
-              Update
+              {t('update')}
             </Button>
           </ListItem>
         </List>

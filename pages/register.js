@@ -17,9 +17,20 @@ import jsCookie from 'js-cookie';
 import { useRouter } from 'next/router';
 import { Store } from '../utils/store';
 import { getError } from '../utils/error';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 export default function RegisterScreen() {
   const { state, dispatch } = useContext(Store);
+  const { t } = useTranslation('common');
   const { userInfo } = state;
   const router = useRouter();
   const { redirect } = router.query;
@@ -38,9 +49,9 @@ export default function RegisterScreen() {
 
   const { enqueueSnackbar } = useSnackbar();
 
-  const submitHandler = async ({ name, email, password, confirmPassword }) => {
+  const submitHandler = async ({ name, email, phone, password, confirmPassword }) => {
     if (password !== confirmPassword) {
-      enqueueSnackbar("Passwords don't match", { variant: 'error' });
+      enqueueSnackbar(t('passwords_mismatch'), { variant: 'error' });
       return;
     }
     try {
@@ -58,10 +69,10 @@ export default function RegisterScreen() {
     }
   };
   return (
-    <Layout title="Register">
+    <Layout title={t('register')}>
       <Form onSubmit={handleSubmit(submitHandler)}>
         <Typography component="h1" variant="h1">
-          Register
+          {t('register')}
         </Typography>
         <List>
           <ListItem>
@@ -78,14 +89,14 @@ export default function RegisterScreen() {
                   variant="outlined"
                   fullWidth
                   id="name"
-                  label="Name"
+                  label={t('name_label')}
                   inputProps={{ type: 'name' }}
                   error={Boolean(errors.name)}
                   helperText={
                     errors.name
                       ? errors.name.type === 'minLength'
-                        ? 'Name length is more than 1'
-                        : 'Name is required'
+                        ? t('name_min')
+                        : t('field_required')
                       : ''
                   }
                   {...field}
@@ -108,14 +119,14 @@ export default function RegisterScreen() {
                   variant="outlined"
                   fullWidth
                   id="email"
-                  label="Email"
+                  label={t('email_label')}
                   inputProps={{ type: 'email' }}
                   error={Boolean(errors.email)}
                   helperText={
                     errors.email
                       ? errors.email.type === 'pattern'
-                        ? 'Email is not valid'
-                        : 'Email is required'
+                        ? t('email_invalid')
+                        : t('field_required')
                       : ''
                   }
                   {...field}
@@ -136,15 +147,11 @@ export default function RegisterScreen() {
                   variant="outlined"
                   fullWidth
                   id="phone"
-                  label="Phone"
+                  label={t('phone_label')}
                   inputProps={{ type: 'phone' }}
                   error={Boolean(errors.phone)}
                   helperText={
-                    errors.phone
-                      ? errors.phone.type === 'pattern'
-                        ? 'Phone is not valid'
-                        : 'Phone is required'
-                      : ''
+                    errors.phone ? t('field_required') : ''
                   }
                   {...field}
                 ></TextField>
@@ -165,14 +172,14 @@ export default function RegisterScreen() {
                   variant="outlined"
                   fullWidth
                   id="password"
-                  label="Password"
+                  label={t('password_label')}
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.password)}
                   helperText={
                     errors.password
                       ? errors.password.type === 'minLength'
-                        ? 'Password length is more than 5'
-                        : 'Password is required'
+                        ? t('password_min')
+                        : t('field_required')
                       : ''
                   }
                   {...field}
@@ -194,14 +201,14 @@ export default function RegisterScreen() {
                   variant="outlined"
                   fullWidth
                   id="confirmPassword"
-                  label="Confirm Password"
+                  label={t('confirm_password_label')}
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.confirmPassword)}
                   helperText={
                     errors.confirmPassword
                       ? errors.confirmPassword.type === 'minLength'
-                        ? 'Confirm Password length is more than 5'
-                        : 'Confirm Password is required'
+                        ? t('password_min')
+                        : t('field_required')
                       : ''
                   }
                   {...field}
@@ -211,13 +218,13 @@ export default function RegisterScreen() {
           </ListItem>
           <ListItem>
             <Button variant="contained" type="submit" fullWidth color="primary">
-              Register
+              {t('register')}
             </Button>
           </ListItem>
           <ListItem>
-            Already have an account?{' '}
+            {t('have_account')}{' '}
             <NextLink href={`/login?redirect=${redirect || '/'}`} passHref>
-              <Link>Login</Link>
+              <Link>{t('login')}</Link>
             </NextLink>
           </ListItem>
         </List>

@@ -17,9 +17,20 @@ import { Store } from '../utils/store';
 import { useRouter } from 'next/router';
 import jsCookie from 'js-cookie';
 import { getError } from '../utils/error';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 export default function LoginScreen() {
   const { state, dispatch } = useContext(Store);
+  const { t } = useTranslation('common');
   const { userInfo } = state;
   const router = useRouter();
   const { redirect } = router.query;
@@ -49,10 +60,10 @@ export default function LoginScreen() {
     }
   };
   return (
-    <Layout title="Login">
+    <Layout title={t('login')}>
       <Form onSubmit={handleSubmit(submitHandler)}>
         <Typography component="h1" variant="h1">
-          Login
+          {t('login')}
         </Typography>
         <List>
           <ListItem>
@@ -69,14 +80,14 @@ export default function LoginScreen() {
                   variant="outlined"
                   fullWidth
                   id="email"
-                  label="Email"
+                  label={t('email_label')}
                   inputProps={{ type: 'email' }}
                   error={Boolean(errors.email)}
                   helperText={
                     errors.email
                       ? errors.email.type === 'pattern'
-                        ? 'Email is not valid'
-                        : 'Email is required'
+                        ? t('email_invalid')
+                        : t('field_required')
                       : ''
                   }
                   {...field}
@@ -98,14 +109,14 @@ export default function LoginScreen() {
                   variant="outlined"
                   fullWidth
                   id="password"
-                  label="Password"
+                  label={t('password_label')}
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.password)}
                   helperText={
                     errors.password
                       ? errors.password.type === 'minLength'
-                        ? 'Password length is more than 5'
-                        : 'Password is required'
+                        ? t('password_min')
+                        : t('field_required')
                       : ''
                   }
                   {...field}
@@ -115,13 +126,13 @@ export default function LoginScreen() {
           </ListItem>
           <ListItem>
             <Button variant="contained" type="submit" fullWidth color="primary">
-              Login
+              {t('login')}
             </Button>
           </ListItem>
           <ListItem>
-            Do not have an account?{' '}
+            {t('no_account')}{' '}
             <NextLink href={`/register?redirect=${redirect || '/'}`} passHref>
-              <Link>Register</Link>
+              <Link>{t('register')}</Link>
             </NextLink>
           </ListItem>
         </List>

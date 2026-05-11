@@ -1,6 +1,5 @@
 import { createTheme } from "@mui/material/styles";
 import {
-  Container,
   CssBaseline,
   ThemeProvider,
 
@@ -13,11 +12,41 @@ import { Store } from "../utils/store";
 import Footer from "./Footer";
 import Script from "next/script";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+
+const siteUrl = "https://maamoungrissa.me";
+const ogLocales = {
+    en: "en_US",
+    fr: "fr_FR",
+    ar: "ar_TN",
+    ru: "ru_RU",
+};
 
 export default function Layout({ title, tags, description, children }) {
     const { t } = useTranslation("common");
+    const router = useRouter();
+    const { locale = "en", locales = ["en"], defaultLocale = "en", asPath = "/" } = router;
     const { state, dispatch } = useContext(Store);
     const { darkMode } = state;
+    const siteTitle = title ? `${title} - Maamoun Grissa` : t("meta_title");
+    const metaDescription = description || t("meta_description");
+    const metaKeywords = tags?.length ? tags.join(", ") : t("meta_keywords");
+    const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
+    const pathname = asPath.split("?")[0].split("#")[0] || "/";
+    const pathWithoutLocale = locales.reduce((path, currentLocale) => {
+        const localePrefix = `/${currentLocale}`;
+
+        return path === localePrefix || path.startsWith(`${localePrefix}/`)
+            ? path.replace(localePrefix, "") || "/"
+            : path;
+    }, pathname);
+    const getLocalizedUrl = (targetLocale) => {
+        const localizedPath = targetLocale === defaultLocale
+            ? pathWithoutLocale
+            : `/${targetLocale}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
+
+        return `${siteUrl}${localizedPath === "/" ? "" : localizedPath}`;
+    };
 
     const darkModeChangeHandler = () => {
         dispatch({ type: darkMode ? "DARK_MODE_OFF" : "DARK_MODE_ON" });
@@ -69,33 +98,38 @@ export default function Layout({ title, tags, description, children }) {
     return (
         <>
         <Head>
-            <title>{title ? `${title} - Maamoun Grissa` : "Maamoun Grissa"}</title>
-            {description && <meta name="description" content={description}></meta>}
-            {tags && <meta name="keywords" content={tags.join(", ")}></meta>}
-
-            <meta name="description" content={t("about")} />
-            <meta name="keywords" content="web developer, software developer, fullstack developer, developer, fullstack, Html, css, Javascript, React, ReactJs, NextJs, Vue, VueJs, jQuery, Node, NodeJs, php, Wordpress, Laravel, Joomla, Opencart, Twig, sass, Tailwindcss, Web Development, Développement web, Web Application, Mobile Application, Website, Design, Logo, Flyer, Marketing, Sponsoring, Digital Marketing, Sousse, Tunisia, Tunisie, Digital, Technologies" />
-            <meta property="og:title" content="Maamoun Grissa - FullStack Web Developer" />
-            <meta property="og:description" content="Innovative Full Stack Web Developer with 4 years of experience in websites, web & mobile applications design and coding. Demonstrated talent for frontend and backend web development to optimize online presence. A seasoned expert in HTML, CSS, JavaScript, PHP,  MySQL, MongoDB, NodeJs, ReactJs, NextJs, VueJs, ReactNative, Ionic Framework ..." />
+            <title>{siteTitle}</title>
+            <meta name="description" content={metaDescription} />
+            <meta name="keywords" content={metaKeywords} />
+            <meta property="og:title" content={siteTitle} />
+            <meta property="og:description" content={metaDescription} />
             <meta property="og:image" content="https://maamoungrissa.me/logo.png" />
-            <meta property="og:url" content="https://maamoungrissa.me" />
+            <meta property="og:url" content={getLocalizedUrl(locale)} />
+            <meta property="og:type" content="website" />
+            <meta property="og:locale" content={ogLocales[locale] || ogLocales.en} />
+            {locales.filter((currentLocale) => currentLocale !== locale).map((currentLocale) => (
+                <meta key={`og-locale-${currentLocale}`} property="og:locale:alternate" content={ogLocales[currentLocale] || currentLocale} />
+            ))}
+            <link rel="canonical" href={getLocalizedUrl(locale)} />
+            {locales.map((currentLocale) => (
+                <link key={`alternate-${currentLocale}`} rel="alternate" hrefLang={currentLocale} href={getLocalizedUrl(currentLocale)} />
+            ))}
+            <link rel="alternate" hrefLang="x-default" href={getLocalizedUrl(defaultLocale)} />
             
             <link rel="icon" href="https://maamoungrissa.me/logo.png" />
-            <title>Maamoun Grissa</title>
-            {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
            
         </Head>
-        <Script id="google" strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
-        <Script id="analytics" strategy="lazyOnload">
+        {googleAnalyticsId && <Script id="google" strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`} />}
+        {googleAnalyticsId && <Script id="analytics" strategy="lazyOnload">
                 {`
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
-                    gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+                    gtag('config', '${googleAnalyticsId}', {
                     page_path: window.location.pathname,
                     });
                 `}
-        </Script>
+        </Script>}
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Header setDarkMode={darkModeChangeHandler} darkMode={darkMode} />

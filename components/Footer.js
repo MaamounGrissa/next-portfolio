@@ -1,4 +1,3 @@
-import { createTheme } from "@mui/material/styles";
 import {
   Box,
   Link,
@@ -38,18 +37,18 @@ export default function Footer() {
                         <Box>
                             <Box display='flex' justifyContent='flex-end' alignItems='center'>
                                 <NextLink href="https://www.facebook.com/maamoung/" passHref>
-                                    <Link style={{ margin: '6px' }}>
-                                        <Image  src="/images/facebook.png" alt="facebook" width={30} height={30} />
+                                    <Link style={{ margin: '6px' }} target="_blank" rel="noreferrer" aria-label="Facebook">
+                                        <Image  src="/images/facebook.png" alt="Facebook" width={30} height={30} />
                                     </Link>
                                 </NextLink>
                                 <NextLink href="https://www.instagram.com/gmaamoun/" passHref>
-                                    <Link style={{ margin: '6px' }} >
-                                        <Image src="/images/instagram.png" alt="instagram" width={30} height={30} />
+                                    <Link style={{ margin: '6px' }} target="_blank" rel="noreferrer" aria-label="Instagram">
+                                        <Image src="/images/instagram.png" alt="Instagram" width={30} height={30} />
                                     </Link>
                                 </NextLink>
                                 <NextLink href="https://www.linkedin.com/in/maamoun-grissa/" passHref>
-                                    <Link style={{ margin: '6px' }} >
-                                        <Image src="/images/linkedin.png" alt="linkedin" width={30} height={30} />
+                                    <Link style={{ margin: '6px' }} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                                        <Image src="/images/linkedin.png" alt="LinkedIn" width={30} height={30} />
                                     </Link>
                                 </NextLink>
                                 {/* <NextLink href="https://www.twitter.com/CreoSousse" passHref>

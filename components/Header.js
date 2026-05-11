@@ -1,43 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import {
     AppBar,
-    Badge,
     Box,
     Toolbar,
     Typography,
     IconButton,
-    Button,
-    Menu,
-    MenuItem,
     Drawer,
-    TextField,
     useMediaQuery,
     List,
     ListItem,
     Divider,
-    Switch
   } from "@mui/material";
 import NextLink from "next/link";
 import classes from "../utils/classes";
 import Image from 'next/image';
-import SearchIcon from "@mui/icons-material/Search";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import Link from 'next/link';
 import MenuIcon from '@mui/icons-material/Menu';
+
+const navLinks = [
+    { href: '#intro', label: 'intro' },
+    { href: '#career', label: 'career' },
+    { href: '#skills', label: 'skills' },
+    { href: '#projects', label: 'portfolio' },
+    { href: '#contacts', label: 'contact' },
+];
+
+const languages = [
+    { locale: 'fr', label: 'Français', image: 'fr' },
+    { locale: 'en', label: 'English', image: 'en' },
+    { locale: 'ar', label: 'العربية', image: 'ar' },
+    { locale: 'ru', label: 'Русский', image: 'ru' },
+];
 
 export default function Header(props) {
     const { darkMode, setDarkMode } = props;
     const router = useRouter();
-    const { locale, asPath } = useRouter();
+    const { locale = 'en', asPath } = router;
     const { t } = useTranslation('common');
     const isDesktop = useMediaQuery("(min-width:600px)");
-    const [sidbarVisible, setSidebarVisible] = useState(false);
+    const [sidebarVisible, setSidebarVisible] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [query, setQuery] = useState("");
     const [showLangsList, setShowLangsList] = useState(false);
+    const currentLanguage = languages.find((language) => language.locale === locale) || languages[1];
 
     const sidebarOpenHandler = () => {
         setSidebarVisible(true);
@@ -46,22 +53,30 @@ export default function Header(props) {
     const sidebarCloseHandler = () => {
         setSidebarVisible(false);
     };
-   
-    const queryChangeHandler = (e) => {
-        setQuery(e.target.value);
+
+    const toggleLanguages = () => {
+        setShowLangsList((isVisible) => !isVisible);
     };
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-        router?.push(`/search?query=${query}`);
+    const handleLanguageKeyDown = (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            toggleLanguages();
+        }
     };
     
     useEffect(() => {
-        document.addEventListener("scroll", () => {
-          const scrollCheck = window.scrollY > 30;
-          setScrolled(scrollCheck)
-        })
-    })
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 30);
+        };
+
+        handleScroll();
+        document.addEventListener("scroll", handleScroll, { passive: true });
+
+        return () => {
+            document.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     return (
         <AppBar position="fixed" sx={scrolled ? classes.colored : classes.appbar}>
@@ -72,48 +87,44 @@ export default function Header(props) {
                 <Box display="flex" alignItems="center" justifyContent="space-between" sx={classes.navbarContainer}>
                     {isDesktop ? (
                         <Box sx={classes.navbarMenu}>
-                            <NextLink href="#intro" passHref>
-                                <a >
-                                    <Typography sx={classes.menuTitle}>{t('intro')}</Typography>
-                                </a>
-                            </NextLink>
-                            <NextLink href="#career" passHref>
-                                <a>
-                                    <Typography sx={classes.menuTitle}>{t('career')}</Typography>
-                                </a>
-                            </NextLink>
-                            <NextLink href="#skills" passHref>
-                                <a>
-                                    <Typography sx={classes.menuTitle}>{t('skills')}</Typography>
-                                </a>
-                            </NextLink>
-                            <NextLink href="#projects" passHref>
-                                <a>
-                                    <Typography sx={classes.menuTitle}>{t('portfolio')}</Typography>
-                                </a>
-                            </NextLink>
-                            <NextLink href="#contacts" passHref>
-                                <a>
-                                    <Typography sx={classes.menuTitle}>{t('contact')}</Typography>
-                                </a>
-                            </NextLink>
+                            {navLinks.map((link) => (
+                                <NextLink key={link.href} href={link.href} passHref>
+                                    <a>
+                                        <Typography sx={classes.menuTitle}>{t(link.label)}</Typography>
+                                    </a>
+                                </NextLink>
+                            ))}
                         </Box>
                         ) : (
-                            <IconButton onClick={sidebarOpenHandler}>
+                            <IconButton onClick={sidebarOpenHandler} aria-label={t('open_menu')}>
                                 <MenuIcon sx={{ color: "#FFF", fontSize: "30px" }} />
                             </IconButton>
                         )
                     }
                     <Box>
-                        <div className='languages flex center' onClick={() => setShowLangsList(!showLangsList)}>
-                            <div className="selected-lang"> <Image src={`/images/langs/${locale === 'fr' ? 'fr' : locale === 'ar' ? 'ar' : locale === 'ru' ? 'ru' : 'en' }.png`} alt="Lang" width={25} height={25} /> </div>
+                        <div
+                            className='languages flex center'
+                            onClick={toggleLanguages}
+                            onKeyDown={handleLanguageKeyDown}
+                            role="button"
+                            tabIndex={0}
+                            aria-label={t('language_switcher')}
+                            aria-expanded={showLangsList}
+                        >
+                            <div className="selected-lang"> <Image src={`/images/langs/${currentLanguage.image}.png`} alt={currentLanguage.label} width={25} height={25} /> </div>
                             <KeyboardArrowDownIcon className={ showLangsList ? 'rotate' : '' } />
                             <div className={ showLangsList ? "list-languages show" : "list-languages"}>
                                 <ul>
-                                    <li><Link href={asPath} locale="fr"><a className="flex"><Image src="/images/langs/fr.png" alt="Lang" width={25} height={25} /> <span style={{ color: "#333", marginLeft: "8px" }}>Français</span></a></Link></li>
-                                    <li><Link href={asPath} locale="en"><a className="flex"><Image src="/images/langs/en.png" alt="Lang" width={25} height={25} /> <span style={{ color: "#333", marginLeft: "8px" }}>English</span></a></Link></li>
-                                    <li><Link href={asPath} locale="ar"><a className="flex"><Image src="/images/langs/ar.png" alt="Lang" width={25} height={25} /> <span style={{ color: "#333", marginLeft: "8px" }}>العربية</span></a></Link></li>
-                                    <li><Link href={asPath} locale="ru"><a className="flex"><Image src="/images/langs/ru.png" alt="Lang" width={25} height={25} /> <span style={{ color: "#333", marginLeft: "8px" }}>русский</span></a></Link></li>
+                                    {languages.map((language) => (
+                                        <li key={language.locale}>
+                                            <NextLink href={asPath} locale={language.locale} passHref>
+                                                <a className="flex">
+                                                    <Image src={`/images/langs/${language.image}.png`} alt={language.label} width={25} height={25} />
+                                                    <span style={{ color: "#333", marginLeft: "8px" }}>{language.label}</span>
+                                                </a>
+                                            </NextLink>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </div>
@@ -146,7 +157,7 @@ export default function Header(props) {
             </Toolbar>
             <Drawer
                 anchor="left"
-                open={sidbarVisible}
+                open={sidebarVisible}
                 onClose={sidebarCloseHandler}
                 >
                 <List>
@@ -158,33 +169,15 @@ export default function Header(props) {
                         >
                             <Typography>&nbsp;</Typography>
                             <Box>
-                                <NextLink href="#intro" passHref>
-                                    <a >
-                                        <Typography sx={classes.menuTitleMobile}>{t('intro')}</Typography>
-                                    </a>
-                                </NextLink>
-                                <NextLink href="#career" passHref>
-                                    <a>
-                                        <Typography sx={classes.menuTitleMobile}>{t('career')}</Typography>
-                                    </a>
-                                </NextLink>
-                                <NextLink href="#skills" passHref>
-                                    <a>
-                                        <Typography sx={classes.menuTitleMobile}>{t('skills')}</Typography>
-                                    </a>
-                                </NextLink>
-                                <NextLink href="#projects" passHref>
-                                    <a>
-                                        <Typography sx={classes.menuTitleMobile}>{t('portfolio')}</Typography>
-                                    </a>
-                                </NextLink>
-                                <NextLink href="#contacts" passHref>
-                                    <a>
-                                        <Typography sx={classes.menuTitleMobile}>{t('contact')}</Typography>
-                                    </a>
-                                </NextLink>
+                                {navLinks.map((link) => (
+                                    <NextLink key={link.href} href={link.href} passHref>
+                                        <a onClick={sidebarCloseHandler}>
+                                            <Typography sx={classes.menuTitleMobile}>{t(link.label)}</Typography>
+                                        </a>
+                                    </NextLink>
+                                ))}
                             </Box>
-                            <IconButton sx={classes.closeIcon} aria-label="close" onClick={sidebarCloseHandler}>
+                            <IconButton sx={classes.closeIcon} aria-label={t('close_menu')} onClick={sidebarCloseHandler}>
                                 <CancelIcon />
                             </IconButton>
                         </Box>
