@@ -17,9 +17,9 @@ function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }) 
     AOS.init({
       easing: "ease-out-cubic",
       once: true,
-      offset: 50,
-      delay: 200,
-      duration: 1200,
+      mirror: false,
+      offset: 60,
+      duration: 900,
     });
   }, []);
 

@@ -15,7 +15,7 @@ import { useTranslation } from 'next-i18next';
 export default function Footer() {
     const { t } = useTranslation('common');
     return (
-        <div id="contacts" >
+        <div id="contacts" data-aos="fade-up" data-aos-duration="900">
             <Box component="footer" sx={classes.footer}>
                 <Grid container rowSpacing={1}  columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                     >

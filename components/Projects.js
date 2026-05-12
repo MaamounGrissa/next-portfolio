@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
+import AOS from 'aos';
 import client from '../utils/client';
 
 export default function Projects(props) {
@@ -25,6 +26,12 @@ export default function Projects(props) {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        if (typeof window !== 'undefined' && !loading) {
+            requestAnimationFrame(() => AOS.refreshHard());
+        }
+    }, [loading, projects]);
+
     return (
         <section id="projects" className="projects_container">
             <h2>{t("references")}</h2>
@@ -33,8 +40,14 @@ export default function Projects(props) {
             {!loading && !error && projects?.length === 0 && <p className="section_message">{t('no_projects')}</p>}
             <div className="projects">
                 {
-                    !loading && !error && projects?.map(project => (
-                        <div key={project._id} className="project" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="500">
+                    !loading && !error && projects?.map((project, idx) => (
+                        <div
+                            key={project._id}
+                            className="project"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                            data-aos-delay={(idx % 6) * 120}
+                        >
                             <h2 className='project_title'>{project.name}</h2>
                             {project.skills?.map((skill, skillIndex) => (
                                 <div key={skill} className={`project_skill${skillIndex}`} >

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
+import AOS from 'aos';
 import client from '../utils/client';
 import { useRouter } from 'next/router';
 
@@ -41,6 +42,9 @@ export default function Career(props) {
             setEducations([])
             setExperiences([])
         }
+        if (typeof window !== 'undefined') {
+            requestAnimationFrame(() => AOS.refreshHard());
+        }
     }, [career])
 
     return (
@@ -50,15 +54,21 @@ export default function Career(props) {
                 : error ? <p className="section_message">{t('content_unavailable')}</p>
                 : (
                     <>
-                        <div className='education_container' data-aos="fade-right" data-aos-duration="1000">
-                            <h2>{t("education")}</h2>
+                        <div className='education_container'>
+                            <h2 data-aos={locale === 'ar' ? 'fade-left' : 'fade-right'} data-aos-duration="800">{t("education")}</h2>
                             {
-                                educations?.length ? educations.map(education => {
+                                educations?.length ? educations.map((education, idx) => {
                                     const title = getLocalizedText(education.title, locale);
                                     const description = getLocalizedText(education.description, locale);
 
                                     return (
-                                    <div key={education._id} className="education_item">
+                                    <div
+                                        key={education._id}
+                                        className="education_item"
+                                        data-aos={locale === 'ar' ? 'fade-left' : 'fade-right'}
+                                        data-aos-delay={idx * 120}
+                                        data-aos-duration="800"
+                                    >
                                         <div className="education_image">
                                             <Image src={`/images/career/${education.image_name}.png`} alt={title} layout="fill" objectFit='contain' />
                                         </div>
@@ -70,15 +80,21 @@ export default function Career(props) {
                                 )}) : <p className="section_message">{t('no_career_items')}</p>
                             }
                         </div>
-                        <div className='experience_container' data-aos="fade-left" data-aos-duration="1000">
-                            <h2>{t("experience")}</h2>
+                        <div className='experience_container'>
+                            <h2 data-aos={locale === 'ar' ? 'fade-right' : 'fade-left'} data-aos-duration="800">{t("experience")}</h2>
                             {
-                                experiences?.length ? experiences.map(experience => {
+                                experiences?.length ? experiences.map((experience, idx) => {
                                     const title = getLocalizedText(experience.title, locale);
                                     const description = getLocalizedText(experience.description, locale);
 
                                     return (
-                                    <div key={experience._id} className="experience_item">
+                                    <div
+                                        key={experience._id}
+                                        className="experience_item"
+                                        data-aos={locale === 'ar' ? 'fade-right' : 'fade-left'}
+                                        data-aos-delay={idx * 120}
+                                        data-aos-duration="800"
+                                    >
                                         <div className="experience_image">
                                             <Image src={`/images/career/${experience.image_name}.png`} alt={title} layout="fill" objectFit='contain' />
                                         </div>

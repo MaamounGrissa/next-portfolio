@@ -27,22 +27,26 @@ const classes = {
     appbar: {
       backgroundColor: "rgba(255, 255, 255, 0)",
       boxShadow: "none",
-      padding: "10px 20px",
-      transition: "all 0.8s linear",
+      padding: "14px 20px",
+      transition: "background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease",
+      backdropFilter: "blur(0px)",
+      WebkitBackdropFilter: "blur(0px)",
       "& a": {
         color: "#ffffff",
         marginLeft: 1,
       },
     },
     colored: {
-      boxShadow: "none",
-      padding: "10px 20px",
-      transition: "all 0.8s linear",
+      boxShadow: "0 6px 24px rgba(0, 0, 0, 0.35)",
+      padding: "6px 20px",
+      transition: "background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease",
+      backdropFilter: "blur(8px)",
+      WebkitBackdropFilter: "blur(8px)",
       "& a": {
         color: "#ffffff",
         marginLeft: 1,
       },
-      backgroundColor: "#000a1d",
+      backgroundColor: "rgba(0, 10, 29, 0.85)",
     },
     toolbar: {
       justifyContent: "space-between",
@@ -66,9 +70,10 @@ const classes = {
       marginRight: "1rem",
       letterSpacing: 0,
       cursor: "pointer",
-      transition: "all 0.5s linear",
+      transition: "color 0.35s ease, transform 0.35s ease",
       '&:hover': {
         color: "#f700c4",
+        transform: "translateY(-1px)",
       },
     },
     menuTitleMobile: {

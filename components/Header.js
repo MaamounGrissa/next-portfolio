@@ -89,7 +89,7 @@ export default function Header(props) {
                         <Box sx={classes.navbarMenu}>
                             {navLinks.map((link) => (
                                 <NextLink key={link.href} href={link.href} passHref>
-                                    <a>
+                                    <a className="menu-link">
                                         <Typography sx={classes.menuTitle}>{t(link.label)}</Typography>
                                     </a>
                                 </NextLink>

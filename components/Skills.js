@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
+import AOS from 'aos';
 import client from '../utils/client';
 
 export default function Skills(props) {
@@ -25,6 +26,12 @@ export default function Skills(props) {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        if (typeof window !== 'undefined' && !loading) {
+            requestAnimationFrame(() => AOS.refreshHard());
+        }
+    }, [loading, skills]);
+
     return (
         <section id="skills" className="skills_container">
             <h2>{t("skills")}</h2>
@@ -33,8 +40,14 @@ export default function Skills(props) {
             {!loading && !error && skills?.length === 0 && <p className="section_message light">{t('no_skills')}</p>}
             <div className="skills">
                 {
-                    !loading && !error && skills?.map(skill => (
-                        <div key={skill._id} className="skill">
+                    !loading && !error && skills?.map((skill, idx) => (
+                        <div
+                            key={skill._id}
+                            className="skill"
+                            data-aos="zoom-in"
+                            data-aos-delay={(idx % 10) * 80}
+                            data-aos-duration="700"
+                        >
                             <Image src={`/images/skills/${skill.image_name}.png`} alt={skill.name} width={100} height={100} />
                         </div>
                     ))
